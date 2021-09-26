@@ -1,0 +1,50 @@
+{
+  "private": true,
+  "packageManager": "pnpm@6.15.1",
+  "workspaces": [
+    "packages/*",
+    "play",
+    "docs"
+  ],
+  "scripts": {
+    "cz": "pnpm exec git-cz",
+    "test": "jest",
+    "dev": "pnpm -C play dev",
+    "gen": "bash ./scripts/gc.sh",
+    "gen:version": "sucrase-node build/gen-version.ts",
+    "update:version": "sucrase-node build/update-version.ts",
+    "clean": "pnpm run clean:lib && pnpm run clean -r --stream",
+    "clean:lib": "rimraf dist",
+    "build": "gulp -f build/gulpfile.ts",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --max-warnings 0 && prettier --check .",
+    "lint:fix": "eslint --fix . --ext .vue,.js,.ts,.jsx,.tsx && prettier --write .",
+    "docs:dev": "sh ./scripts/if-build.sh && pnpm docs:gen-locale && pnpm -C docs dev",
+    "docs:build": "pnpm -C docs build",
+    "docs:serve": "pnpm -C docs serve",
+    "docs:gen-locale": "rimraf docs/.vitepress/i18n && sucrase-node build/crowdin-generate.ts",
+    "docs:crowdin": "sucrase-node build/crowdin-credentials.ts",
+    "prepare": "husky install",
+    "postinstall": "pnpm gen:version"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx}": [
+      "eslint --max-warnings 0 --fix",
+      "prettier --write"
+    ],
+    "*.{scss,css,json,yaml,yml,md,html}": "prettier --write"
+  },
+  "browserslist": [
+    "> 1%",
+    "not ie 11",
+    "not op_mini all"
+  ],
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
+}
