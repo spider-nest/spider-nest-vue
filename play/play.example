@@ -1,0 +1,28 @@
+<script setup>
+import { SnButton } from '@spider-nest-vue/components'
+</script>
+
+<template>
+  <div class="play-container">
+    <SnButton> test </SnButton>
+  </div>
+</template>
+
+<style lang="less">
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  #play {
+    height: 100%;
+    width: 100%;
+    .play-container {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+</style>

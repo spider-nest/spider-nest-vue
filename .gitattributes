@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.css linguist-detectable=false
+*.less linguist-detectable=false
+*.js linguist-detectable=true
+*.vue linguist-detectable=true

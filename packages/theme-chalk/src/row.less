@@ -1,0 +1,31 @@
+@import 'common/var';
+
+.@{prefix}-row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  &.@{state-prefix}justify-center {
+    justify-content: center;
+  }
+
+  &.@{state-prefix}justify-end {
+    justify-content: flex-end;
+  }
+
+  &.@{state-prefix}justify-space-between {
+    justify-content: space-between;
+  }
+
+  &.@{state-prefix}justify-space-around {
+    justify-content: space-around;
+  }
+
+  &.@{state-prefix}align-middle {
+    align-items: center;
+  }
+
+  &.@{state-prefix}align-bottom {
+    align-items: flex-end;
+  }
+}

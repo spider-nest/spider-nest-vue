@@ -1,0 +1,7 @@
+{
+  "name": "@spider-nest-vue/test-utils",
+  "private": true,
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "license": "MIT"
+}
