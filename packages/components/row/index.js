@@ -7,4 +7,5 @@ _Row.install = (app) => {
 }
 
 export default _Row
+
 export const SnRow = _Row

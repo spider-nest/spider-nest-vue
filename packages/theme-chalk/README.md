@@ -13,7 +13,7 @@ $ pnpm i spider-nest-vue
 Use Less import
 
 ```
-@import 'spider-nest-vue/lib/theme-chalk/index.less';
+@import 'spider-nest-vue/lib/theme-chalk/index.scss';
 ```
 
 Or Use vite/webpack

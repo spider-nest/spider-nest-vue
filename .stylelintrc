@@ -1,7 +1,6 @@
 {
   "root": true,
-  "plugins": ["stylelint-order"],
-  "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+  "plugins": ["stylelint-scss", "stylelint-order"],
   "rules": {
     "order/order": [
       [

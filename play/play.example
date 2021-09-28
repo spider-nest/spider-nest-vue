@@ -8,7 +8,7 @@ import { SnButton } from '@spider-nest-vue/components'
   </div>
 </template>
 
-<style lang="less">
+<style lang="scss">
 html,
 body {
   width: 100vw;

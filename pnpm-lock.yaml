@@ -57,7 +57,6 @@ importers:
       gulp: ^4.0.2
       husky: ^7.0.2
       jest: ^26.6.3
-      less: ^4.1.1
       lint-staged: ^11.1.2
       lodash: ^4.17.21
       memoize-one: ^5.2.1
@@ -70,10 +69,10 @@ importers:
       rollup-plugin-filesize: ^9.1.1
       rollup-plugin-terser: ^7.0.2
       rollup-plugin-vue: ^6.0.0
+      sass: ^1.42.1
       stylelint: ^13.13.1
-      stylelint-config-prettier: ^8.0.2
-      stylelint-config-standard: ^22.0.0
       stylelint-order: ^4.1.0
+      stylelint-scss: ^3.21.0
       sucrase: ^3.20.1
       through2: ^4.0.2
       vue: ^3.2.19
@@ -138,7 +137,6 @@ importers:
       gulp: 4.0.2
       husky: 7.0.2
       jest: 26.6.3
-      less: 4.1.1
       lint-staged: 11.1.2
       prettier: 2.4.1
       rimraf: 3.0.2
@@ -148,10 +146,10 @@ importers:
       rollup-plugin-filesize: 9.1.1
       rollup-plugin-terser: 7.0.2_rollup@2.57.0
       rollup-plugin-vue: 6.0.0_@vue+compiler-sfc@3.2.19
+      sass: 1.42.1
       stylelint: 13.13.1
-      stylelint-config-prettier: 8.0.2_stylelint@13.13.1
-      stylelint-config-standard: 22.0.0_stylelint@13.13.1
       stylelint-order: 4.1.0_stylelint@13.13.1
+      stylelint-scss: 3.21.0_stylelint@13.13.1
       sucrase: 3.20.1
       through2: 4.0.2
       vue: 3.2.19
@@ -196,13 +194,13 @@ importers:
     specifiers:
       gulp-autoprefixer: ^8.0.0
       gulp-clean-css: ^4.3.0
-      gulp-less: ^5.0.0
       gulp-rename: ^2.0.0
+      gulp-sass: ^5.0.0
     devDependencies:
       gulp-autoprefixer: 8.0.0_gulp@4.0.2
       gulp-clean-css: 4.3.0
-      gulp-less: 5.0.0
       gulp-rename: 2.0.0
+      gulp-sass: 5.0.0
 
   packages/tokens:
     specifiers: {}
@@ -3330,7 +3328,6 @@ packages:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
     dev: true
-    optional: true
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
@@ -3624,7 +3621,6 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
-    optional: true
 
   /chownr/2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
@@ -3956,12 +3952,6 @@ packages:
     resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==}
     dependencies:
       safe-buffer: 5.1.2
-    dev: true
-
-  /copy-anything/2.0.3:
-    resolution: {integrity: sha512-GK6QUtisv4fNS+XcI7shX0Gx9ORg7QqIznyfho79JTnX1XhLiyZHfftvGiziqzRiEi/Bjhgpi+D2o7HxJFPnDQ==}
-    dependencies:
-      is-what: 3.14.1
     dev: true
 
   /copy-descriptor/0.1.1:
@@ -4454,15 +4444,6 @@ packages:
   /err-code/2.0.3:
     resolution: {integrity: sha512-2bmlRpNKBxT/CRmPOlyISQpNj+qSeYvcym/uT0Jx2bMOlKLtSy1ZmLuVxSEKKyor/N5yhvp/ZiG1oE3DEYMSFA==}
     dev: true
-
-  /errno/0.1.8:
-    resolution: {integrity: sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A==}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      prr: 1.0.1
-    dev: true
-    optional: true
 
   /error-ex/1.3.2:
     resolution: {integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==}
@@ -5781,21 +5762,22 @@ packages:
       yargs: 7.1.2
     dev: true
 
-  /gulp-less/5.0.0:
-    resolution: {integrity: sha512-W2I3TewO/By6UZsM/wJG3pyK5M6J0NYmJAAhwYXQHR+38S0iDtZasmUgFCH3CQj+pQYw/PAIzxvFvwtEXz1HhQ==}
-    engines: {node: '>=6'}
-    dependencies:
-      less: 4.1.1
-      object-assign: 4.1.1
-      plugin-error: 1.0.1
-      replace-ext: 2.0.0
-      through2: 4.0.2
-      vinyl-sourcemaps-apply: 0.2.1
-    dev: true
-
   /gulp-rename/2.0.0:
     resolution: {integrity: sha512-97Vba4KBzbYmR5VBs9mWmK+HwIf5mj+/zioxfZhOKeXtx5ZjBk57KFlePf5nxq9QsTtFl0ejnHE3zTC9MHXqyQ==}
     engines: {node: '>=4'}
+    dev: true
+
+  /gulp-sass/5.0.0:
+    resolution: {integrity: sha512-J0aH0/2N4+2szGCeut0ktGHK0Wg8L9uWivuigrl7xv+nhxozBQRAKLrhnDDaTa3FeUWYtgT8w4RlgdhRy5v16w==}
+    engines: {node: '>=12'}
+    dependencies:
+      chalk: 4.1.2
+      lodash: 4.17.21
+      plugin-error: 1.0.1
+      replace-ext: 2.0.0
+      strip-ansi: 6.0.1
+      transfob: 1.0.0
+      vinyl-sourcemaps-apply: 0.2.1
     dev: true
 
   /gulp/4.0.2:
@@ -6063,14 +6045,6 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
-  /image-size/0.5.5:
-    resolution: {integrity: sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=}
-    engines: {node: '>=0.10.0'}
-    hasBin: true
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -6224,7 +6198,6 @@ packages:
     dependencies:
       binary-extensions: 2.2.0
     dev: true
-    optional: true
 
   /is-boolean-object/1.1.2:
     resolution: {integrity: sha512-gDYaKHJmnj4aWxyj6YHyXVpdQawtVLHU5cb+eztPGczf6cjuTdwve5ZIEfgXqH4e57An1D1AKf8CZ3kYrQRqYA==}
@@ -6548,10 +6521,6 @@ packages:
   /is-valid-glob/1.0.0:
     resolution: {integrity: sha1-Kb8+/3Ab4tTTFdusw5vDn+j2Aao=}
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  /is-what/3.14.1:
-    resolution: {integrity: sha512-sNxgpk9793nzSs7bA6JQJGeIuRBQhAaNGG77kzYQgMkrID+lS6SlK07K5LaptscDlSaIgH+GPFzf+d75FVxozA==}
     dev: true
 
   /is-windows/1.0.2:
@@ -7307,24 +7276,6 @@ packages:
       flush-write-stream: 1.1.1
     dev: true
 
-  /less/4.1.1:
-    resolution: {integrity: sha512-w09o8tZFPThBscl5d0Ggp3RcrKIouBoQscnOMgFH3n5V3kN/CXGHNfCkRPtxJk6nKryDXaV9aHLK55RXuH4sAw==}
-    engines: {node: '>=6'}
-    hasBin: true
-    dependencies:
-      copy-anything: 2.0.3
-      parse-node-version: 1.0.1
-      tslib: 1.14.1
-    optionalDependencies:
-      errno: 0.1.8
-      graceful-fs: 4.2.8
-      image-size: 0.5.5
-      make-dir: 2.1.0
-      mime: 1.6.0
-      needle: 2.9.1
-      source-map: 0.6.1
-    dev: true
-
   /leven/3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
     engines: {node: '>=6'}
@@ -7754,14 +7705,6 @@ packages:
       mime-db: 1.49.0
     dev: true
 
-  /mime/1.6.0:
-    resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
-    engines: {node: '>=4'}
-    hasBin: true
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /mimic-fn/1.2.0:
     resolution: {integrity: sha512-jf84uxzwiuiIVKiOLpfYk7N46TSy8ubTonmneY9vrpHNAnp0QBt2BxWV9dO3/j+BoVAb+a5G6YDPW3M5HOdMWQ==}
     engines: {node: '>=4'}
@@ -7957,18 +7900,6 @@ packages:
       split2: 3.2.2
       through2: 4.0.2
     dev: true
-
-  /needle/2.9.1:
-    resolution: {integrity: sha512-6R9fqJ5Zcmf+uYaFgdIHmLwNldn5HbK8L5ybn7Uz+ylX/rnOsSp1AHcvQSrCaFN+qNM1wpymHqD7mVasEOlHGQ==}
-    engines: {node: '>= 4.4.x'}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      debug: 3.2.7
-      iconv-lite: 0.4.24
-      sax: 1.2.4
-    dev: true
-    optional: true
 
   /negotiator/0.6.2:
     resolution: {integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==}
@@ -8888,11 +8819,6 @@ packages:
     resolution: {integrity: sha1-IS1b/hMYMGpCD2QCuOJv85ZHqEk=}
     dev: true
 
-  /prr/1.0.1:
-    resolution: {integrity: sha1-0/wRS6BplaRexok/SEzrHXj19HY=}
-    dev: true
-    optional: true
-
   /pseudomap/1.0.2:
     resolution: {integrity: sha1-8FKijacOYYkX7wqKw0wa5aaChrM=}
     dev: true
@@ -9157,7 +9083,6 @@ packages:
     dependencies:
       picomatch: 2.3.0
     dev: true
-    optional: true
 
   /realpath-missing/1.1.0:
     resolution: {integrity: sha512-wnWtnywepjg/eHIgWR97R7UuM5i+qHLA195qdN9UPKvcMqfn60+67S8sPPW3vDlSEfYHoFkKU8IvpCNty3zQvQ==}
@@ -9602,10 +9527,13 @@ packages:
       walker: 1.0.7
     dev: true
 
-  /sax/1.2.4:
-    resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
+  /sass/1.42.1:
+    resolution: {integrity: sha512-/zvGoN8B7dspKc5mC6HlaygyCBRvnyzzgD5khiaCfglWztY99cYoiTUksVx11NlnemrcfH5CEaCpsUKoW0cQqg==}
+    engines: {node: '>=8.9.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.2
     dev: true
-    optional: true
 
   /saxes/5.0.1:
     resolution: {integrity: sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==}
@@ -10121,33 +10049,6 @@ packages:
     resolution: {integrity: sha1-eVjHk+R+MuB9K1yv5cC/jhLneQI=}
     dev: true
 
-  /stylelint-config-prettier/8.0.2_stylelint@13.13.1:
-    resolution: {integrity: sha512-TN1l93iVTXpF9NJstlvP7nOu9zY2k+mN0NSFQ/VEGz15ZIP9ohdDZTtCWHs5LjctAhSAzaILULGbgiM0ItId3A==}
-    engines: {node: '>= 10', npm: '>= 5'}
-    hasBin: true
-    peerDependencies:
-      stylelint: '>=11.0.0'
-    dependencies:
-      stylelint: 13.13.1
-    dev: true
-
-  /stylelint-config-recommended/5.0.0_stylelint@13.13.1:
-    resolution: {integrity: sha512-c8aubuARSu5A3vEHLBeOSJt1udOdS+1iue7BmJDTSXoCBmfEQmmWX+59vYIj3NQdJBY6a/QRv1ozVFpaB9jaqA==}
-    peerDependencies:
-      stylelint: ^13.13.0
-    dependencies:
-      stylelint: 13.13.1
-    dev: true
-
-  /stylelint-config-standard/22.0.0_stylelint@13.13.1:
-    resolution: {integrity: sha512-uQVNi87SHjqTm8+4NIP5NMAyY/arXrBgimaaT7skvRfE9u3JKXRK9KBkbr4pVmeciuCcs64kAdjlxfq6Rur7Hw==}
-    peerDependencies:
-      stylelint: ^13.13.0
-    dependencies:
-      stylelint: 13.13.1
-      stylelint-config-recommended: 5.0.0_stylelint@13.13.1
-    dev: true
-
   /stylelint-order/4.1.0_stylelint@13.13.1:
     resolution: {integrity: sha512-sVTikaDvMqg2aJjh4r48jsdfmqLT+nqB1MOsaBnvM3OwLx4S+WXcsxsgk5w18h/OZoxZCxuyXMh61iBHcj9Qiw==}
     peerDependencies:
@@ -10156,6 +10057,20 @@ packages:
       lodash: 4.17.21
       postcss: 7.0.38
       postcss-sorting: 5.0.1
+      stylelint: 13.13.1
+    dev: true
+
+  /stylelint-scss/3.21.0_stylelint@13.13.1:
+    resolution: {integrity: sha512-CMI2wSHL+XVlNExpauy/+DbUcB/oUZLARDtMIXkpV/5yd8nthzylYd1cdHeDMJVBXeYHldsnebUX6MoV5zPW4A==}
+    engines: {node: '>=8'}
+    peerDependencies:
+      stylelint: ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0
+    dependencies:
+      lodash: 4.17.21
+      postcss-media-query-parser: 0.2.3
+      postcss-resolve-nested-selector: 0.1.1
+      postcss-selector-parser: 6.0.6
+      postcss-value-parser: 4.1.0
       stylelint: 13.13.1
     dev: true
 
@@ -10473,6 +10388,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       punycode: 2.1.1
+    dev: true
+
+  /transfob/1.0.0:
+    resolution: {integrity: sha1-x/wnpbVDCtSGJnrmZtkj90oKsyA=}
     dev: true
 
   /trim-newlines/3.0.1:

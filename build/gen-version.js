@@ -14,7 +14,7 @@ if (tagVer) {
 }
 
 fs.writeFileSync(
-  path.resolve(__dirname, '../packages/spider-nest-vue/version.ts'),
+  path.resolve(__dirname, '../packages/spider-nest-vue/version.js'),
   `export const version = '${version}'
 `
 )

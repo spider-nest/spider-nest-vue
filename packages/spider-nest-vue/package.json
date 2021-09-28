@@ -21,7 +21,7 @@
   "sideEffects": [
     "dist/*",
     "theme-chalk/*.css",
-    "theme-chalk/src/*.less"
+    "theme-chalk/src/*.scss"
   ],
   "repository": {
     "type": "git",

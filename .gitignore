@@ -26,4 +26,4 @@ dist
 coverage
 packages/*/es
 packages/*/lib
-packages/spider-nest-vue/version.ts
+packages/spider-nest-vue/version.js
