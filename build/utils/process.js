@@ -5,7 +5,9 @@ import { projRoot } from './paths'
 export const run = async (command, cwd = projRoot) =>
   new Promise((resolve, reject) => {
     const args = command.split(' ')
-    const cmd = args.shift()
+    const cmd = /^win/.test(process.platform)
+      ? `${args.shift()}.cmd`
+      : args.shift()
 
     green(`run: ${cmd} ${args.join(' ')}`)
     const app = spawn(cmd, args, {
