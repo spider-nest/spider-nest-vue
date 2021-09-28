@@ -33,25 +33,28 @@ mkdir -p "$DIRNAME/__tests__"
 cat > $DIRNAME/src/index.vue <<EOF
 <script>
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   name: 'Sn${NAME}',
-  props: { },
   setup(props) {
     // init here
   },
 })
 </script>
+
 <template>
   <div>
     <slot></slot>
   </div>
 </template>
-<style>
+
+<style lang="scss">
 </style>
 EOF
 
-cat <<EOF >"$DIRNAME/index.ts"
+cat <<EOF >"$DIRNAME/index.js"
 import { App } from 'vue'
+
 import ${NAME} from './src/index.vue'
 
 ${NAME}.install = (app: App): void => {
@@ -61,8 +64,9 @@ ${NAME}.install = (app: App): void => {
 export default ${NAME}
 EOF
 
-cat > $DIRNAME/__tests__/$INPUT_NAME.spec.ts <<EOF
+cat > $DIRNAME/__tests__/$INPUT_NAME.spec.js <<EOF
 import { mount } from '@vue/test-utils'
+
 import $NAME from '../src/index.vue'
 
 const AXIOM = 'Rem is the best girl'
