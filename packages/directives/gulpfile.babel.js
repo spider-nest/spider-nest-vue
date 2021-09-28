@@ -9,8 +9,8 @@ export const cjs = './lib'
 const inputs = [
   './**/*.js',
   '!./node_modules',
-  '!./gulpfile.js',
   '!./__tests__/*.js',
+  '!./gulpfile.babel.js',
 ]
 
 function compileEsm() {
@@ -24,18 +24,18 @@ function compileCjs() {
 const distBundle = path.resolve(buildOutput, './spider-nest-vue')
 
 /**
- * copy from packages/hooks/lib to dist/hooks
+ * copy from packages/theme-chalk/lib to dist/theme-chalk
  */
 function copyEsm() {
   return gulp
-    .src(`${cjs}/**`)
-    .pipe(gulp.dest(path.resolve(distBundle, 'lib/hooks')))
+    .src(`${esm}/**`)
+    .pipe(gulp.dest(path.resolve(distBundle, 'es/directives')))
 }
 
 function copyCjs() {
   return gulp
-    .src(`${esm}/**`)
-    .pipe(gulp.dest(path.resolve(distBundle, 'es/hooks')))
+    .src(`${cjs}/**`)
+    .pipe(gulp.dest(path.resolve(distBundle, 'lib/directives')))
 }
 
 export const build = gulp.series(compileEsm, compileCjs, copyEsm, copyCjs)

@@ -10,7 +10,7 @@ export const buildTokens = (module) => {
   const inputs = [
     './*.js',
     '!./node_modules',
-    '!./gulpfile.js',
+    '!./gulpfile.babel.js',
     '!./__tests__/*.js',
   ]
   const config = buildConfig[module]

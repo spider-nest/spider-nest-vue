@@ -1,24 +1,23 @@
 import path from 'path'
 import gulp from 'gulp'
 import { buildOutput } from '../../build/utils/paths'
-import rewriter from '../../build/gulp-rewriter'
 
 export const esm = './es'
 export const cjs = './lib'
 
 const inputs = [
   './**/*.js',
+  '!gulpfile.babel.js',
   '!./node_modules',
-  '!./__tests__/*.js',
-  '!./gulpfile.js',
+  '!./tests/*.js',
 ]
 
 function compileEsm() {
-  return gulp.src(inputs).pipe(rewriter()).pipe(gulp.dest(esm))
+  return gulp.src(inputs).pipe(gulp.dest(esm))
 }
 
 function compileCjs() {
-  return gulp.src(inputs).pipe(rewriter()).pipe(gulp.dest(cjs))
+  return gulp.src(inputs).pipe(gulp.dest(cjs))
 }
 
 const distBundle = path.resolve(buildOutput, './spider-nest-vue')
@@ -28,14 +27,14 @@ const distBundle = path.resolve(buildOutput, './spider-nest-vue')
  */
 function copyEsm() {
   return gulp
-    .src(`${esm}/**`)
-    .pipe(gulp.dest(path.resolve(distBundle, 'es/directives')))
+    .src(`${cjs}/**`)
+    .pipe(gulp.dest(path.resolve(distBundle, './lib/utils')))
 }
 
 function copyCjs() {
   return gulp
-    .src(`${cjs}/**`)
-    .pipe(gulp.dest(path.resolve(distBundle, 'lib/directives')))
+    .src(`${esm}/**`)
+    .pipe(gulp.dest(path.resolve(distBundle, './es/utils')))
 }
 
 export const build = gulp.series(compileEsm, compileCjs, copyEsm, copyCjs)
