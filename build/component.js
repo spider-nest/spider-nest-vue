@@ -1,24 +1,24 @@
-import fs from 'fs'
-import path from 'path'
-import { series, parallel } from 'gulp'
-import { rollup } from 'rollup'
-import vue from 'rollup-plugin-vue'
-import css from 'rollup-plugin-css-only'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import esbuild from 'rollup-plugin-esbuild'
-import { sync as globSync } from 'fast-glob'
-import filesize from 'rollup-plugin-filesize'
+const fs = require('fs')
+const path = require('path')
+const { series, parallel } = require('gulp')
+const { rollup } = require('rollup')
+const vue = require('rollup-plugin-vue')
+const css = require('rollup-plugin-css-only')
+const { nodeResolve } = require('@rollup/plugin-node-resolve')
+const commonjs = require('@rollup/plugin-commonjs')
+const esbuild = require('rollup-plugin-esbuild')
+const { sync: globSync } = require('fast-glob')
+const filesize = require('rollup-plugin-filesize')
 
-import { compRoot } from './utils/paths'
-import { generateExternal, writeBundles } from './utils/rollup'
-import { getWorkspaceNames } from './utils/pkg'
+const { compRoot } = require('./utils/paths')
+const {
+  generateExternal,
+  rollupPathRewriter,
+  writeBundles,
+} = require('./utils/rollup')
+const { buildConfig } = require('./info')
+const reporter = require('./size-reporter')
 
-import { buildConfig } from './info'
-import reporter from './size-reporter'
-import { SN_PREFIX } from './constants'
-
-let workspacePkgs = []
 const plugins = [
   css(),
   vue({
@@ -29,19 +29,6 @@ const plugins = [
   commonjs(),
   esbuild(),
 ]
-
-const pathsRewriter = (module) => (id) => {
-  const config = buildConfig[module]
-  if (workspacePkgs.some((pkg) => id.startsWith(pkg)))
-    return id.replace(SN_PREFIX, config.bundle.path)
-  else return ''
-}
-
-const init = async () => {
-  workspacePkgs = (await getWorkspaceNames()).filter((pkg) =>
-    pkg.startsWith(SN_PREFIX)
-  )
-}
 
 async function getComponents() {
   const files = globSync('*', {
@@ -57,6 +44,7 @@ async function getComponents() {
 async function buildEachComponent() {
   const componentPaths = await getComponents()
   const external = await generateExternal({ full: false })
+  const pathRewriter = await rollupPathRewriter()
 
   const builds = componentPaths.map(
     async ({ path: p, name: componentName }) => {
@@ -77,7 +65,7 @@ async function buildEachComponent() {
           'index.js'
         ),
         exports: module === 'cjs' ? 'named' : undefined,
-        paths: pathsRewriter(module),
+        paths: pathRewriter(module),
         plugins: [filesize({ reporter })],
       }))
 
@@ -105,8 +93,10 @@ async function buildComponentEntry() {
   await writeBundles(bundle, opts)
 }
 
-export const buildComponents = series(
-  init,
-  parallel(buildEachComponent, buildComponentEntry)
-)
-export { buildEachComponent, buildComponentEntry }
+const buildComponent = series(parallel(buildEachComponent, buildComponentEntry))
+
+module.exports = {
+  buildEachComponent,
+  buildComponentEntry,
+  buildComponent,
+}

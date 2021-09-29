@@ -24,7 +24,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/__tests__/**'],
+      files: ['**/__tests__/**', '**/gulpfile.js'],
       rules: {
         'no-console': 'off',
       },

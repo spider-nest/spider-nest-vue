@@ -2,30 +2,30 @@
   "name": "@spider-nest-vue/theme-chalk",
   "version": "0.0.1",
   "description": "Spider nest vue component chalk theme.",
-  "main": "index.css",
-  "unpkg": "index.css",
-  "jsdelivr": "index.css",
-  "style": "index.css",
-  "scripts": {
-    "clean": "rimraf lib",
-    "build": "gulp build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/spider-nest/spider-nest-vue.git"
-  },
   "keywords": [
     "vue-components",
     "spider-nest",
     "spider-nest-vue",
     "theme-chalk"
   ],
+  "main": "index.css",
+  "unpkg": "index.css",
+  "jsdelivr": "index.css",
+  "style": "index.css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spider-nest/spider-nest-vue.git"
+  },
   "author": "cnguu",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/spider-nest/spider-nest-vue#issues"
   },
   "homepage": "https://github.com/spider-nest/spider-nest-vue/blob/main/packages/theme-chalk/README.md",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "gulp"
+  },
   "devDependencies": {
     "gulp-autoprefixer": "^8.0.0",
     "gulp-clean-css": "^4.3.0",

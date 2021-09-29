@@ -2,16 +2,16 @@
   "name": "@spider-nest-vue/directives",
   "description": "Spider nest vue directives.",
   "version": "0.0.1",
-  "main": "index.ts",
-  "module": "index.ts",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
   "unpkg": "index.js",
   "jsdelivr": "index.js",
-  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "gulp"
+  },
   "peerDependencies": {
     "vue": "^3.2.0"
-  },
-  "scripts": {
-    "clean": "rimraf lib",
-    "build": "gulp build"
   }
 }

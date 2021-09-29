@@ -1,14 +1,14 @@
 {
   "name": "@spider-nest-vue/locale",
-  "description": "Spider nest vue locale",
+  "description": "Spider nest vue locale.",
   "version": "0.0.1",
-  "main": "index.ts",
-  "module": "index.ts",
+  "main": "index.js",
+  "module": "index.js",
   "unpkg": "index.js",
   "jsdelivr": "index.js",
   "license": "MIT",
   "scripts": {
-    "clean": "rimraf lib es",
-    "build": "gulp build"
+    "clean": "rimraf dist",
+    "build": "gulp"
   }
 }

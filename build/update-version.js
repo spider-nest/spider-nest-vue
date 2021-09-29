@@ -1,8 +1,8 @@
-import fs from 'fs'
+const fs = require('fs')
 
-import { epPackage } from './utils/paths'
-import { cyan, red, yellow, green } from './utils/log'
-import { getPackageManifest } from './utils/pkg'
+const { snPackage } = require('./utils/paths')
+const { cyan, red, yellow, green } = require('./utils/log')
+const { getPackageManifest } = require('./utils/pkg')
 
 const tagVersion = process.env.TAG_VERSION
 const gitHead = process.env.GIT_HEAD
@@ -21,14 +21,14 @@ cyan(
 ;(async () => {
   yellow(`Updating package.json for spider-nest-vue`)
 
-  const json = getPackageManifest(epPackage)
+  const json = getPackageManifest(snPackage)
 
   json.version = tagVersion
   json.gitHead = gitHead
 
   if (!(process.argv.includes('-d') || process.argv.includes('--dry-run'))) {
     try {
-      await fs.promises.writeFile(epPackage, JSON.stringify(json, null, 2), {
+      await fs.promises.writeFile(snPackage, JSON.stringify(json, null, 2), {
         encoding: 'utf-8',
       })
     } catch (e) {

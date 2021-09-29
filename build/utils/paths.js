@@ -1,27 +1,51 @@
-import { resolve } from 'path'
+const { resolve } = require('path')
 
-export const projRoot = resolve(__dirname, '..', '..')
-export const pkgRoot = resolve(projRoot, 'packages')
-export const compRoot = resolve(pkgRoot, 'components')
-export const themeRoot = resolve(pkgRoot, 'theme-chalk')
-export const hookRoot = resolve(pkgRoot, 'hooks')
-export const localeRoot = resolve(pkgRoot, 'locale')
-export const directiveRoot = resolve(pkgRoot, 'directives')
-export const epRoot = resolve(pkgRoot, 'spider-nest-vue')
-export const utilRoot = resolve(pkgRoot, 'utils')
-export const docRoot = resolve(projRoot, 'docs')
+const projRoot = resolve(__dirname, '..', '..')
+const pkgRoot = resolve(projRoot, 'packages')
+const compRoot = resolve(pkgRoot, 'components')
+const themeRoot = resolve(pkgRoot, 'theme-chalk')
+const hookRoot = resolve(pkgRoot, 'hooks')
+const localeRoot = resolve(pkgRoot, 'locale')
+const directiveRoot = resolve(pkgRoot, 'directives')
+const snRoot = resolve(pkgRoot, 'spider-nest-vue')
+const utilRoot = resolve(pkgRoot, 'utils')
+const docRoot = resolve(projRoot, 'docs')
 
 /** dist */
-export const buildOutput = resolve(projRoot, 'dist')
+const buildOutput = resolve(projRoot, 'dist')
 /** dist/spider-nest-vue */
-export const epOutput = resolve(buildOutput, 'spider-nest-vue')
+const snOutput = resolve(buildOutput, 'spider-nest-vue')
 
-export const projPackage = resolve(projRoot, 'package.json')
-export const compPackage = resolve(compRoot, 'package.json')
-export const themePackage = resolve(themeRoot, 'package.json')
-export const hookPackage = resolve(hookRoot, 'package.json')
-export const localePackage = resolve(localeRoot, 'package.json')
-export const directivePackage = resolve(directiveRoot, 'package.json')
-export const epPackage = resolve(epRoot, 'package.json')
-export const utilPackage = resolve(utilRoot, 'package.json')
-export const docPackage = resolve(docRoot, 'package.json')
+const projPackage = resolve(projRoot, 'package.json')
+const compPackage = resolve(compRoot, 'package.json')
+const themePackage = resolve(themeRoot, 'package.json')
+const hookPackage = resolve(hookRoot, 'package.json')
+const localePackage = resolve(localeRoot, 'package.json')
+const directivePackage = resolve(directiveRoot, 'package.json')
+const snPackage = resolve(snRoot, 'package.json')
+const utilPackage = resolve(utilRoot, 'package.json')
+const docPackage = resolve(docRoot, 'package.json')
+
+module.exports = {
+  projRoot,
+  pkgRoot,
+  compRoot,
+  themeRoot,
+  hookRoot,
+  localeRoot,
+  directiveRoot,
+  snRoot,
+  utilRoot,
+  docRoot,
+  buildOutput,
+  snOutput,
+  projPackage,
+  compPackage,
+  themePackage,
+  hookPackage,
+  localePackage,
+  directivePackage,
+  snPackage,
+  utilPackage,
+  docPackage,
+}

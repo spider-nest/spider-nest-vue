@@ -2,11 +2,11 @@
   "name": "@spider-nest-vue/utils",
   "version": "0.0.1",
   "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "gulp"
+  },
   "peerDependencies": {
     "vue": "^3.2.0"
-  },
-  "scripts": {
-    "clean": "rimraf lib es",
-    "build": "gulp build"
   }
 }

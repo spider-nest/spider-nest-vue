@@ -1,7 +1,7 @@
-import helper from 'components-helper'
+const helper = require('components-helper')
 
-import { epPackage, epOutput } from './utils/paths'
-import { getPackageManifest } from './utils/pkg'
+const { snPackage, snOutput } = require('./utils/paths')
+const { getPackageManifest } = require('./utils/pkg')
 
 const reComponentName = (title) =>
   `sn-${title
@@ -47,8 +47,8 @@ const reAttribute = (value, key) => {
   }
 }
 
-export const buildHelper = (done) => {
-  const { name, version } = getPackageManifest(epPackage)
+const buildHelper = (done) => {
+  const { name, version } = getPackageManifest(snPackage)
 
   const tagVer = process.env.TAG_VERSION
   const _version = tagVer
@@ -61,7 +61,7 @@ export const buildHelper = (done) => {
     name: name,
     version: _version,
     entry: 'docs/en-US/component/!(datetime-picker|message-box|message).md',
-    outDir: epOutput,
+    outDir: snOutput,
     reComponentName,
     reDocUrl,
     reAttribute,
@@ -75,3 +75,5 @@ export const buildHelper = (done) => {
 
   done()
 }
+
+module.exports = { buildHelper }

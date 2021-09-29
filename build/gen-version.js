@@ -1,7 +1,7 @@
-import fs from 'fs'
-import path from 'path'
+const fs = require('fs')
+const path = require('path')
 
-import pkg from '../packages/spider-nest-vue/package.json' // need to be checked
+const pkg = require('../packages/spider-nest-vue/package.json')
 
 const tagVer = process.env.TAG_VERSION
 

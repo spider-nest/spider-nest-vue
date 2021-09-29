@@ -1,8 +1,9 @@
-import { spawn } from 'child_process'
-import { green } from './log'
-import { projRoot } from './paths'
+const { spawn } = require('child_process')
 
-export const run = async (command, cwd = projRoot) =>
+const { green } = require('./log')
+const { projRoot } = require('./paths')
+
+const run = async (command, cwd = projRoot) =>
   new Promise((resolve, reject) => {
     const args = command.split(' ')
     const cmd = /^win/.test(process.platform)
@@ -28,3 +29,5 @@ export const run = async (command, cwd = projRoot) =>
     })
     process.on('exit', onProcessExit)
   })
+
+module.exports = { run }

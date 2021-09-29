@@ -1,25 +1,51 @@
-import findWorkspacePackages from '@pnpm/find-workspace-packages'
-import { projRoot } from './paths'
+const findWorkspacePackages = require('@pnpm/find-workspace-packages')
 
-export const getWorkspacePackages = () => findWorkspacePackages(projRoot)
+const { buildConfig } = require('../info')
+const { SN_PREFIX } = require('../constants')
+const { projRoot } = require('./paths')
 
-export const getWorkspaceNames = async () => {
+const getWorkspacePackages = () => findWorkspacePackages(projRoot)
+
+const getWorkspaceNames = async () => {
   const pkgs = await findWorkspacePackages(projRoot)
   return pkgs.map((pkg) => pkg.manifest.name).filter((name) => !!name)
 }
 
-export const getWorkspacePackageManifest = async (name) => {
+const getWorkspacePackageManifest = async (name) => {
   const packages = await getWorkspacePackages()
   const { manifest } = packages.find((pkg) => pkg.manifest.name === name)
   return manifest
 }
 
-export const getPackageManifest = (pkgPath) => {
+const getPackageManifest = (pkgPath) => {
   return require(pkgPath)
 }
 
-export const getPackageDependencies = (pkgPath) => {
+const getPackageDependencies = (pkgPath) => {
   const manifest = getPackageManifest(pkgPath)
   const { dependencies } = manifest
   return Object.keys(dependencies ?? {})
+}
+
+const pathRewriter = (module, replaceAll) => {
+  const replaceName = replaceAll ? 'replaceAll' : 'replace'
+  const config = buildConfig[module]
+
+  return (id) => {
+    id = id[replaceName](
+      `${SN_PREFIX}/theme-chalk`,
+      'spider-nest-vue/theme-chalk'
+    )
+    id = id[replaceName](`${SN_PREFIX}/`, `${config.bundle.path}/`)
+    return id
+  }
+}
+
+module.exports = {
+  getWorkspacePackages,
+  getWorkspaceNames,
+  getWorkspacePackageManifest,
+  getPackageManifest,
+  getPackageDependencies,
+  pathRewriter,
 }

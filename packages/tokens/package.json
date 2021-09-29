@@ -2,15 +2,15 @@
   "name": "@spider-nest-vue/tokens",
   "version": "0.0.1",
   "license": "MIT",
-  "peerDependencies": {
-    "vue": "^3.2.0"
-  },
+  "main": "index.js",
+  "module": "index.js",
+  "unpkg": "index.js",
+  "jsdelivr": "index.js",
   "scripts": {
-    "clean": "rimraf lib",
+    "clean": "rimraf dist",
     "build": "gulp"
   },
-  "main": "index.ts",
-  "module": "index.ts",
-  "unpkg": "index.js",
-  "jsdelivr": "index.js"
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
 }

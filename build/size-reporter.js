@@ -1,4 +1,4 @@
-import { cyan, bold, yellow, green } from 'chalk'
+const { cyan, bold, yellow, green } = require('chalk')
 
 const reporter = (opt, outputOptions, info) => {
   const values = [
@@ -13,4 +13,4 @@ const reporter = (opt, outputOptions, info) => {
   )} -> minified ${green(values[2])}`
 }
 
-export default reporter
+module.exports = reporter

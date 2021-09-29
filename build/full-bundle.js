@@ -1,24 +1,27 @@
-import path from 'path'
-import fs from 'fs'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-import { rollup } from 'rollup'
-import commonjs from '@rollup/plugin-commonjs'
-import vue from 'rollup-plugin-vue'
-import esbuild from 'rollup-plugin-esbuild'
-import replace from '@rollup/plugin-replace'
-import { parallel } from 'gulp'
+const path = require('path')
+const fs = require('fs')
+const { nodeResolve } = require('@rollup/plugin-node-resolve')
+const { rollup } = require('rollup')
+const commonjs = require('@rollup/plugin-commonjs')
+const vue = require('rollup-plugin-vue')
+const esbuild = require('rollup-plugin-esbuild')
+const replace = require('@rollup/plugin-replace')
+const { parallel } = require('gulp')
 
-import { RollupResolveEntryPlugin } from './rollup-plugin-entry'
-import { epRoot, epOutput } from './utils/paths'
-import { SN_PREFIX, excludes } from './constants'
-import { yellow, green } from './utils/log'
-import { run } from './utils/process'
-import { generateExternal, writeBundles } from './utils/rollup'
-import { withTaskName } from './utils/gulp'
-import { buildConfig } from './info'
+const { RollupResolveEntryPlugin } = require('./rollup-plugin-entry')
+const { snRoot, snOutput } = require('./utils/paths')
+const { yellow, green } = require('./utils/log')
+const { run } = require('./utils/process')
+const {
+  generateExternal,
+  rollupPathRewriter,
+  writeBundles,
+} = require('./utils/rollup')
+const { withTaskName } = require('./utils/gulp')
+const { buildConfig } = require('./info')
 
 const getConfig = async (opt = {}) => ({
-  input: path.resolve(epRoot, 'index.js'),
+  input: path.resolve(snRoot, 'index.js'),
   plugins: [
     nodeResolve(),
     vue({
@@ -39,7 +42,7 @@ const getConfig = async (opt = {}) => ({
   external: await generateExternal({ full: true }),
 })
 
-export const buildFull = (minify) => async () => {
+const buildFull = (minify) => async () => {
   const bundle = await rollup(
     await getConfig({
       plugins: [RollupResolveEntryPlugin()],
@@ -50,7 +53,7 @@ export const buildFull = (minify) => async () => {
   await writeBundles(bundle, [
     {
       format: 'umd',
-      file: path.resolve(epOutput, `dist/index.full${minify ? '.min' : ''}.js`),
+      file: path.resolve(snOutput, `dist/index.full${minify ? '.min' : ''}.js`),
       exports: 'named',
       name: 'SpiderNestVue',
       globals: {
@@ -61,7 +64,7 @@ export const buildFull = (minify) => async () => {
     {
       format: 'esm',
       file: path.resolve(
-        epOutput,
+        snOutput,
         `dist/index.full${minify ? '.min' : ''}.mjs`
       ),
       sourcemap: minify,
@@ -69,15 +72,15 @@ export const buildFull = (minify) => async () => {
   ])
 }
 
-export const buildEntry = async () => {
-  const entryFiles = await fs.promises.readdir(epRoot, {
+const buildEntry = async () => {
+  const entryFiles = await fs.promises.readdir(snRoot, {
     withFileTypes: true,
   })
 
   const entryPoints = entryFiles
     .filter((f) => f.isFile())
     .filter((f) => !['package.json', 'README.md'].includes(f.name))
-    .map((f) => path.resolve(epRoot, f.name))
+    .map((f) => path.resolve(snRoot, f.name))
 
   const bundle = await rollup({
     ...(await getConfig()),
@@ -85,34 +88,34 @@ export const buildEntry = async () => {
     external: () => true,
   })
 
-  const rewriter = (id) => {
-    if (id.startsWith(`${SN_PREFIX}/components`))
-      return id.replace(`${SN_PREFIX}/components`, './components')
-    else if (id.startsWith(SN_PREFIX) && excludes.every((e) => !id.endsWith(e)))
-      return id.replace(SN_PREFIX, '.')
-    else return ''
-  }
-
   yellow('Generating entries')
+  const rewriter = await rollupPathRewriter()
   writeBundles(
     bundle,
-    Object.values(buildConfig).map((config) => ({
+    Object.entries(buildConfig).map(([module, config]) => ({
       format: config.format,
       dir: config.output.path,
       exports: config.format === 'cjs' ? 'named' : undefined,
-      paths: rewriter,
+      paths: rewriter(module),
     }))
   )
   green('entries generated')
 }
 
-export const copyFullStyle = () =>
+const copyFullStyle = () =>
   Promise.all([
-    run(`cp ${epOutput}/theme-chalk/index.css ${epOutput}/dist/index.css`),
+    run(`cp ${snOutput}/theme-chalk/index.css ${snOutput}/dist/index.css`),
   ])
 
-export const buildFullBundle = parallel(
+const buildFullBundle = parallel(
   withTaskName('buildFullMinified', buildFull(true)),
   withTaskName('buildFull', buildFull(false)),
   buildEntry
 )
+
+module.exports = {
+  buildFull,
+  buildEntry,
+  copyFullStyle,
+  buildFullBundle,
+}

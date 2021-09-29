@@ -18,7 +18,7 @@
     "update:version": "sucrase-node build/update-version.js",
     "clean": "pnpm run clean:lib && pnpm run clean -r --stream",
     "clean:lib": "rimraf dist",
-    "build": "gulp -f build/gulpfile.babel.js",
+    "build": "gulp -f build/gulpfile.js",
     "format": "prettier --write .",
     "lint:eslint": "eslint --cache --max-warnings 0  \"**/*.{js,vue,jsx}\" --fix",
     "lint:prettier": "prettier --write  \"**/*.{js,vue,jsx}\"",
@@ -64,9 +64,6 @@
     "normalize-wheel-es": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
-    "@babel/register": "^7.15.3",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@pnpm/find-workspace-packages": "^3.1.13",

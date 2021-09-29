@@ -2,12 +2,12 @@
   "name": "@spider-nest-vue/components",
   "version": "0.0.1",
   "description": "All components are settled here.",
-  "peerDependencies": {
-    "vue": "^3.2.0"
-  },
   "main": "index.js",
   "module": "index.js",
   "unpkg": "index.js",
   "jsdelivr": "index.js",
-  "sideEffects": false
+  "sideEffects": false,
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
 }

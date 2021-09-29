@@ -2,7 +2,6 @@
   "name": "spider-nest-vue",
   "version": "0.0.1",
   "description": "A vue.js ui library for web.",
-  "homepage": "https://github.com/spider-nest/spider-nest-vue#readme",
   "keywords": [
     "vue",
     "vuejs",
@@ -13,6 +12,14 @@
     "spider-nest-vue"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/spider-nest/spider-nest-vue#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spider-nest/spider-nest-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spider-nest/spider-nest-vue/issues"
+  },
   "main": "lib/index.js",
   "module": "es/index.js",
   "style": "dist/index.css",
@@ -23,13 +30,6 @@
     "theme-chalk/*.css",
     "theme-chalk/src/*.scss"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/spider-nest/spider-nest-vue.git"
-  },
-  "bugs": {
-    "url": "https://github.com/spider-nest/spider-nest-vue/issues"
-  },
   "peerDependencies": {
     "vue": "^3.2.0"
   },

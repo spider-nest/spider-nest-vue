@@ -1,6 +1,6 @@
-import path from 'path'
+const path = require('path')
 
-export function RollupResolveEntryPlugin() {
+function RollupResolveEntryPlugin() {
   return {
     name: 'spider-nest-vue-entry-plugin',
     transform(code, id) {
@@ -20,3 +20,5 @@ export function RollupResolveEntryPlugin() {
     },
   }
 }
+
+module.exports = { RollupResolveEntryPlugin }

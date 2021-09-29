@@ -1,17 +1,17 @@
 {
   "name": "@spider-nest-vue/hooks",
-  "description": "Spider nest vue hoos.",
+  "description": "Spider nest vue hooks.",
   "version": "0.0.1",
-  "main": "index.ts",
-  "module": "index.ts",
+  "main": "index.js",
+  "module": "index.js",
   "unpkg": "index.js",
   "jsdelivr": "index.js",
   "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "gulp"
+  },
   "peerDependencies": {
     "vue": "^3.2.0"
-  },
-  "scripts": {
-    "clean": "rimraf lib",
-    "build": "gulp build"
   }
 }

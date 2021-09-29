@@ -1,21 +1,30 @@
-import chalk from 'chalk'
+const chalk = require('chalk')
 
-export function cyan(str) {
+function cyan(str) {
   console.log(chalk.cyan(str))
 }
-export function yellow(str) {
+
+function yellow(str) {
   console.log(chalk.yellow(str))
 }
 
-export function green(str) {
+function green(str) {
   console.log(chalk.green(str))
 }
 
-export function red(str) {
+function red(str) {
   console.error(chalk.red(str))
 }
 
-export function errorAndExit(e) {
+function errorAndExit(e) {
   red(e.stack ?? e.message)
   process.exit(1)
+}
+
+module.exports = {
+  cyan,
+  yellow,
+  green,
+  red,
+  errorAndExit,
 }

@@ -23,7 +23,4 @@ yarn-error.log*
 *.lock
 package-lock.json
 dist
-coverage
-packages/*/es
-packages/*/lib
 packages/spider-nest-vue/version.js
