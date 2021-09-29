@@ -1,14 +1,11 @@
+import mapValues from 'lodash/mapValues'
+
 import { debugWarn } from './error'
 
 const wrapperKey = Symbol()
 
-export function buildProp({
-  values,
-  required,
-  default: defaultValue,
-  type,
-  validator,
-} = {}) {
+export function buildProp(option = {}) {
+  const { values, required, default: defaultValue, type, validator } = option
   const _validator =
     values || validator
       ? (val) => {
@@ -40,6 +37,9 @@ export function buildProp({
     validator: _validator,
   }
 }
+
+export const buildProps = (options) =>
+  mapValues(options, (option) => buildProp(option))
 
 export const definePropType = (val) => ({ [wrapperKey]: val })
 

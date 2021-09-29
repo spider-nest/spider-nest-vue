@@ -1,5 +1,5 @@
 import { expectTypeOf } from 'expect-type'
-import { buildProp, mutable, keyOf } from '../props'
+import { buildProp, mutable, keyOf, buildProps } from '../props'
 
 describe('buildProp', () => {
   it('Only type', () => {
@@ -152,5 +152,20 @@ describe('buildProp', () => {
 
   it('extract', () => {
     expectTypeOf().toEqualTypeOf()
+  })
+})
+
+describe('buildProps', () => {
+  it('test buildProps', () => {
+    expectTypeOf(
+      buildProps({
+        key1: {
+          type: String,
+        },
+        key2: {
+          values: [1, 2, 3, 4],
+        },
+      })
+    ).toEqualTypeOf()
   })
 })
