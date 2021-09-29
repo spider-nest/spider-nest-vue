@@ -1,9 +1,10 @@
-@import 'function';
-@import '../common/var';
+@use 'function' as *;
+@use '../common/var' as *;
+@forward 'config';
+@use 'config' as *;
 
-/* Break-points
- -------------------------- */
-@mixin res($key, $map: $--breakpoints) {
+// Break-points
+@mixin res($key, $map: $breakpoints) {
   @if map-has-key($map, $key) {
     @media only screen and #{unquote(map-get($map, $key))} {
       @content;
@@ -13,8 +14,7 @@
   }
 }
 
-/* Placeholder
- -------------------------- */
+// Placeholder
 @mixin placeholder {
   &::-webkit-input-placeholder {
     @content;
@@ -29,8 +29,7 @@
   }
 }
 
-/* BEM
- -------------------------- */
+// BEM
 @mixin b($block) {
   $B: $namespace + '-' + $block !global;
 

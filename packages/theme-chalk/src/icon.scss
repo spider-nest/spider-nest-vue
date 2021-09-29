@@ -1,7 +1,7 @@
 @use 'sass:map';
 
-@import 'mixins/mixins';
-@import 'common/var';
+@use 'mixins/mixins' as *;
+@use 'common/var' as *;
 
 [class^='#{$namespace}-icon-'],
 [class*=' #{$namespace}-icon-'] {
@@ -38,7 +38,7 @@
 
 @include b(icon) {
   --color: inherit;
-  --font-size: #{map.get($--font-size, 'base')};
+  --font-size: #{map.get($font-size, 'base')};
 
   @include when(loading) {
     animation: rotating 2s linear infinite;

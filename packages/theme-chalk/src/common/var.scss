@@ -1,13 +1,14 @@
 @use 'sass:math';
 @use 'sass:map';
 
-@import '../mixins/config';
+@use '../mixins/config' as *;
 
 // types
-$--types: primary, success, warning, danger, info;
+$types: primary, success, warning, danger, info;
 
-$--colors: () !default;
-$--colors: map.deep-merge(
+// Color
+$colors: () !default;
+$colors: map.deep-merge(
     (
       'white': #fff,
       'black': #000,
@@ -27,85 +28,84 @@ $--colors: map.deep-merge(
         'base': #6897bb,
       ),
     ),
-    $--colors
+    $colors
 );
 
-$--color-white: map.get($--colors, 'white') !default;
-$--color-black: map.get($--colors, 'black') !default;
-$--color-primary: map.get($--colors, 'primary', 'base') !default;
-$--color-success: map.get($--colors, 'success', 'base') !default;
-$--color-warning: map.get($--colors, 'warning', 'base') !default;
-$--color-danger: map.get($--colors, 'danger', 'base') !default;
-$--color-info: map.get($--colors, 'info', 'base') !default;
+$color-white: map.get($colors, 'white') !default;
+$color-black: map.get($colors, 'black') !default;
+$color-primary: map.get($colors, 'primary', 'base') !default;
+$color-success: map.get($colors, 'success', 'base') !default;
+$color-warning: map.get($colors, 'warning', 'base') !default;
+$color-danger: map.get($colors, 'danger', 'base') !default;
+$color-info: map.get($colors, 'info', 'base') !default;
 
 @mixin set-color-type-light($type, $number) {
-  $--colors: map.deep-merge(
+  $colors: map.deep-merge(
       (
         $type: (
           'light-#{$number}':
           mix(
-              $--color-white,
-              map.get($--colors, $type, 'base'),
+              $color-white,
+              map.get($colors, $type, 'base'),
               math.percentage(math.div($number, 10))
           ),
         ),
       ),
-      $--colors
+      $colors
   ) !global;
 }
 
-// $--colors.primary.light-i
+// $colors.primary.light-i
 // --sn-color-primary-light-i
 @for $i from 1 through 9 {
-  @each $type in $--types {
+  @each $type in $types {
     @include set-color-type-light($type, $i);
   }
 }
 
-$--text-color: () !default;
-$--text-color: map.merge(
+$text-color: () !default;
+$text-color: map.merge(
     (
       'primary': #303133,
       'regular': #606266,
       'secondary': #909399,
       'placeholder': #c0c4cc,
     ),
-    $--text-color
+    $text-color
 );
 
-/* Border
--------------------------- */
-$--border-color: () !default;
-$--border-color: map.merge(
+// Border
+$border-color: () !default;
+$border-color: map.merge(
     (
       'base': #dcdfe6,
       'light': #e4e7ed,
       'lighter': #ebeef5,
       'extra-light': #f2f6fc,
     ),
-    $--border-color
+    $border-color
 );
-$--border-width-base: 1px !default;
-$--border-style-base: solid !default;
-$--border-color-hover: var(--sn-text-color-placeholder) !default;
-$--border-base: $--border-width-base $--border-style-base map.get($--border-color, 'base') !default;
-$--border-radius: () !default;
-$--border-radius: map.merge(
+$border-width-base: 1px !default;
+$border-style-base: solid !default;
+$border-color-hover: var(--sn-text-color-placeholder) !default;
+$border-base: $border-width-base $border-style-base map.get($border-color, 'base') !default;
+$border-radius: () !default;
+$border-radius: map.merge(
     (
       'base': 4px,
       'small': 2px,
       'round': 20px,
       'circle': 100%,
     ),
-    $--border-radius
+    $border-radius
 );
 
 // Background
-$--background-color-base: #f5f7fa !default;
+$background-color-base: #f5f7fa !default;
 
 // Box-shadow
-$--box-shadow: () !default;
-$--box-shadow: map.merge(
+$box-shadow: () !default;
+$box-shadow: map.merge(
     (
       'base': (
         0 2px 4px rgba(0, 0, 0, 0.12),
@@ -113,15 +113,14 @@ $--box-shadow: map.merge(
       ),
       'light': 0 2px 12px 0 rgba(0, 0, 0, 0.1),
     ),
-    $--box-shadow
+    $box-shadow
 );
 
-/* Typography
--------------------------- */
-$--font-path: 'fonts' !default;
-$--font-display: 'auto' !default;
-$--font-size: () !default;
-$--font-size: map.merge(
+// Typography
+$font-path: 'fonts' !default;
+$font-display: 'auto' !default;
+$font-size: () !default;
+$font-size: map.merge(
     (
       'extra-large': 20px,
       'large': 18px,
@@ -130,18 +129,17 @@ $--font-size: map.merge(
       'small': 13px,
       'extra-small': 12px,
     ),
-    $--font-size
+    $font-size
 );
 
-/* Disable base
--------------------------- */
-$--disabled-fill-base: var(--sn-background-color-base) !default;
-$--disabled-color-base: var(--sn-text-color-placeholder) !default;
-$--disabled-border-base: var(--sn-border-color-light) !default;
+// Disable base
+$disabled-fill-base: var(--sn-background-color-base) !default;
+$disabled-color-base: var(--sn-text-color-placeholder) !default;
+$disabled-border-base: var(--sn-border-color-light) !default;
 
 // transition
-$--transition: () !default;
-$--transition: map.merge(
+$transition: () !default;
+$transition: map.merge(
     (
       'all': all var(--sn-transition-duration) var(--sn-transition-function-ease-in-out-bezier),
       'fade': opacity var(--sn-transition-duration) var(--sn-transition-function-fast-bezier),
@@ -153,50 +151,49 @@ $--transition: map.merge(
       'border': border-color var(--sn-transition-duration-fast) var(--sn-transition-function-ease-in-out-bezier),
       'color': color var(--sn-transition-duration-fast) var(--sn-transition-function-ease-in-out-bezier),
     ),
-    $--transition
+    $transition
 );
-$--transition-duration: () !default;
-$--transition-duration: map.merge(
+$transition-duration: () !default;
+$transition-duration: map.merge(
     (
       'default': 0.3s,
       'fast': 0.2s,
     ),
-    $--transition-duration
+    $transition-duration
 );
-$--transition-function: () !default;
-$--transition-function: map.merge(
+$transition-function: () !default;
+$transition-function: map.merge(
     (
       'ease-in-out-bezier': cubic-bezier(0.645, 0.045, 0.355, 1),
       'fast-bezier': cubic-bezier(0.23, 1, 0.32, 1),
     ),
-    $--transition-function
+    $transition-function
 );
 
-/* Break-point
--------------------------- */
-$--sm: 768px !default;
-$--md: 992px !default;
-$--lg: 1200px !default;
-$--xl: 1920px !default;
+// Break-point
+$sm: 768px !default;
+$md: 992px !default;
+$lg: 1200px !default;
+$xl: 1920px !default;
 
-$--breakpoints: (
-  'xs': '(max-width: #{$--sm})',
-  'sm': '(min-width: #{$--sm})',
-  'md': '(min-width: #{$--md})',
-  'lg': '(min-width: #{$--lg})',
-  'xl': '(min-width: #{$--xl})',
+$breakpoints: (
+  'xs': '(max-width: #{$sm})',
+  'sm': '(min-width: #{$sm})',
+  'md': '(min-width: #{$md})',
+  'lg': '(min-width: #{$lg})',
+  'xl': '(min-width: #{$xl})',
 ) !default;
 
-$--breakpoints-spec: (
-  'xs-only': '(max-width: #{$--sm})',
-  'sm-and-up': '(min-width: #{$--sm})',
-  'sm-only': '(min-width: #{$--sm}) and (max-width: #{$--md})',
-  'sm-and-down': '(max-width: #{$--md})',
-  'md-and-up': '(min-width: #{$--md})',
-  'md-only': '(min-width: #{$--md}) and (max-width: #{$--lg})',
-  'md-and-down': '(max-width: #{$--lg})',
-  'lg-and-up': '(min-width: #{$--lg})',
-  'lg-only': '(min-width: #{$--lg}) and (max-width: #{$--xl})',
-  'lg-and-down': '(max-width: #{$--xl})',
-  'xl-only': '(min-width: #{$--xl})',
+$breakpoints-spec: (
+  'xs-only': '(max-width: #{$sm})',
+  'sm-and-up': '(min-width: #{$sm})',
+  'sm-only': '(min-width: #{$sm}) and (max-width: #{$md})',
+  'sm-and-down': '(max-width: #{$md})',
+  'md-and-up': '(min-width: #{$md})',
+  'md-only': '(min-width: #{$md}) and (max-width: #{$lg})',
+  'md-and-down': '(max-width: #{$lg})',
+  'lg-and-up': '(min-width: #{$lg})',
+  'lg-only': '(min-width: #{$lg}) and (max-width: #{$xl})',
+  'lg-and-down': '(max-width: #{$xl})',
+  'xl-only': '(min-width: #{$xl})',
 ) !default;

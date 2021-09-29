@@ -1,5 +1,5 @@
-@import './base.scss';
+@use './base';
 
 // component styles
-@import './col.scss';
-@import './row.scss';
+@use './col';
+@use './row';

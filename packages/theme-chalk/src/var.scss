@@ -1,26 +1,26 @@
 @use 'sass:map';
 
 // CSS3 var
-@import 'common/var';
-@import 'mixins/var';
+@use 'common/var' as *;
+@use 'mixins/var' as *;
 
 // for better performance do not dynamically change the root variable if you really
 // do not need that, since this could introduce recalculation overhead for rendering.
 // https://lisilinhart.info/posts/css-variables-performance/
 
 :root {
-  --sn-color-white: #{$--color-white};
-  --sn-color-black: #{$--color-black};
+  --sn-color-white: #{$color-white};
+  --sn-color-black: #{$color-black};
 
-  --sn-color-primary: #{$--color-primary};
+  --sn-color-primary: #{$color-primary};
 
   // Background
-  --sn-background-color-base: #{$--background-color-base};
+  --sn-background-color-base: #{$background-color-base};
 
   // Border
-  --sn-border-width-base: #{$--border-width-base};
-  --sn-border-style-base: #{$--border-style-base};
-  --sn-border-color-hover: #{$--border-color-hover};
+  --sn-border-width-base: #{$border-width-base};
+  --sn-border-style-base: #{$border-style-base};
+  --sn-border-color-hover: #{$border-color-hover};
   --sn-border-base: var(--sn-border-width-base) var(--sn-border-style-base) var(--sn-border-color-base);
 
   // Svg
@@ -43,12 +43,11 @@
   --sn-disabled-color-base: var(--sn-text-color-placeholder);
   --sn-disabled-border-base: var(--sn-border-color-light);
 
-  /* Transition
--------------------------- */
+  // Transition
   // refer to this website to get the bezier motion function detail
   //  https://cubic-bezier.com/#p1,p2,p3,p4 (change px as your function parameter)
-  --sn-transition-duration: #{map.get($--transition-duration, 'default')};
-  --sn-transition-duration-fast: #{map.get($--transition-duration, 'fast')};
+  --sn-transition-duration: #{map.get($transition-duration, 'default')};
+  --sn-transition-duration-fast: #{map.get($transition-duration, 'fast')};
 
   @for $i from 1 through 9 {
     @include set-css-color-type-light('primary', $i);
@@ -62,30 +61,30 @@
 
   // --sn-text-color-#{$type}
   @each $type in (primary, regular, secondary, placeholder) {
-    @include set-css-var-type('text-color', $type, $--text-color);
+    @include set-css-var-type('text-color', $type, $text-color);
   }
 
   // --sn-border-color-#{$type}
   @each $type in (base, light, lighter, extra-light) {
-    @include set-css-var-type('border-color', $type, $--border-color);
+    @include set-css-var-type('border-color', $type, $border-color);
   }
 
   // --sn-border-radius-#{$type}
   @each $type in (base, small, round, circle) {
-    @include set-css-var-type('border-radius', $type, $--border-radius);
+    @include set-css-var-type('border-radius', $type, $border-radius);
   }
 
   // Box-shadow
   // --sn-box-shadow-#{$type}
   @each $type in (base, light) {
-    @include set-css-var-type('box-shadow', $type, $--box-shadow);
+    @include set-css-var-type('box-shadow', $type, $box-shadow);
   }
 
   // Typography
   @each $type in (extra-large, large, medium, base, small, extra-small) {
-    @include set-css-var-type('font-size', $type, $--font-size);
+    @include set-css-var-type('font-size', $type, $font-size);
   }
 
-  @include set-component-css-var('transition-function', $--transition-function);
-  @include set-component-css-var('transition', $--transition);
+  @include set-component-css-var('transition-function', $transition-function);
+  @include set-component-css-var('transition', $transition);
 }
