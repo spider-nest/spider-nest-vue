@@ -1,6 +1,7 @@
+const path = require('path')
 const helper = require('components-helper')
 
-const { snPackage, snOutput } = require('./utils/paths')
+const { snPackage, snOutput, projRoot } = require('./utils/paths')
 const { getPackageManifest } = require('./utils/pkg')
 
 const reComponentName = (title) =>
@@ -60,7 +61,10 @@ const buildHelper = (done) => {
   helper({
     name: name,
     version: _version,
-    entry: 'docs/en-US/component/!(datetime-picker|message-box|message).md',
+    entry: `${path.resolve(
+      projRoot,
+      'docs/en-US/component'
+    )}/!(datetime-picker|message-box|message).md`,
     outDir: snOutput,
     reComponentName,
     reDocUrl,
