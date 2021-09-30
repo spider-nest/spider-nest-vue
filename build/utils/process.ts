@@ -9,7 +9,12 @@ const isWin = /^win/.test(process.platform)
 export const run = async (command: string, cwd: string = projRoot) =>
   new Promise<void>((resolve, reject) => {
     const args = command.split(' ')
-    const cmd = isWin ? `${args.shift()!}.cmd` : args.shift()!
+    let cmd = args.shift()!
+    if (isWin) {
+      if (cmd === 'pnpm') {
+        cmd += '.cmd'
+      }
+    }
 
     green(`run: ${cmd} ${args.join(' ')}`)
     const app = spawn(cmd, args, {

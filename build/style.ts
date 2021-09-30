@@ -37,9 +37,7 @@ export const copyStyle = () => {
     const src = path.resolve(buildOutput, 'styles', config.output.name)
     const dst = path.resolve(config.output.path, 'components')
 
-    return withTaskName(`copyStyle:${module}`, () =>
-      run(`cp -r ${src}/. ${dst}/`)
-    )
+    return withTaskName(`copyStyle:${module}`, () => run(`cp -r ${src} ${dst}`))
   }
 
   return parallel(copy('esm'), copy('cjs'))

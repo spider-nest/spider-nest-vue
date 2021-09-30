@@ -66,7 +66,7 @@ export const genEntryTypes = async () => {
       const outputFileText = outputFile.getText()
       await fs.writeFileSync(
         filepath,
-        outputFileText
+        outputFileText.replaceAll
           ? outputFileText.replaceAll('@spider-nest-vue', '.')
           : outputFileText,
         'utf8'
@@ -83,7 +83,7 @@ export const copyEntryTypes = (() => {
   const copy = (module: Module) =>
     parallel(
       withTaskName(`copyEntryTypes:${module}`, () =>
-        run(`cp -r ${src}/. ${buildConfig[module].output.path}/`)
+        run(`cp -r ${src} ${buildConfig[module].output.path}`)
       ),
       withTaskName('copyEntryDefinitions', async () => {
         const files = await glob('*.d.ts', {
@@ -91,9 +91,13 @@ export const copyEntryTypes = (() => {
           absolute: true,
           onlyFiles: true,
         })
-        await run(
-          `cp -r ${files.join(' ')} ${buildConfig[module].output.path}/`
-        )
+        const fileStr = files.join(' ')
+        console.log(fileStr.length)
+        if (fileStr) {
+          await run(
+            `cp -r ${files.join(' ')} ${buildConfig[module].output.path}/`
+          )
+        }
       })
     )
 

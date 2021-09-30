@@ -119,8 +119,7 @@ export const buildEntry = async () => {
 
 export const copyFullStyle = () =>
   Promise.all([
-    run(`cp ${snOutput}/theme-chalk/index.css ${snOutput}/dist/index.css`),
-    run(`cp -R ${snOutput}/theme-chalk/fonts ${snOutput}/dist/fonts`),
+    run(`cp -r ${snOutput}/theme-chalk/index.css ${snOutput}/dist/index.css`),
   ])
 
 export const buildFullBundle = parallel(
