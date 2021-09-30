@@ -3,8 +3,8 @@
   "description": "Spider nest vue directives.",
   "version": "0.0.1",
   "license": "MIT",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "index.ts",
+  "module": "index.ts",
   "unpkg": "index.js",
   "jsdelivr": "index.js",
   "scripts": {

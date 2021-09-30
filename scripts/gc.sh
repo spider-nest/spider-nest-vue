@@ -31,12 +31,12 @@ mkdir -p "$DIRNAME/src"
 mkdir -p "$DIRNAME/__tests__"
 
 cat > $DIRNAME/src/index.vue <<EOF
-<script>
+<script lang='ts'>
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Sn${NAME}',
-  setup(props) {
+  setup() {
     // init here
   },
 })
@@ -44,15 +44,14 @@ export default defineComponent({
 
 <template>
   <div>
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
 EOF
 
-cat <<EOF >"$DIRNAME/index.js"
+cat <<EOF >"$DIRNAME/index.ts"
 import { App } from 'vue'
 
 import ${NAME} from './src/index.vue'
@@ -64,7 +63,7 @@ ${NAME}.install = (app: App): void => {
 export default ${NAME}
 EOF
 
-cat > $DIRNAME/__tests__/$INPUT_NAME.spec.js <<EOF
+cat > $DIRNAME/__tests__/$INPUT_NAME.spec.ts <<EOF
 import { mount } from '@vue/test-utils'
 
 import $NAME from '../src/index.vue'

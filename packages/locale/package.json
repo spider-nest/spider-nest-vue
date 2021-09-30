@@ -2,10 +2,11 @@
   "name": "@spider-nest-vue/locale",
   "description": "Spider nest vue locale.",
   "version": "0.0.1",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "index.ts",
+  "module": "index.ts",
   "unpkg": "index.js",
   "jsdelivr": "index.js",
+  "types": "index.d.ts",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
