@@ -1,5 +1,5 @@
 import path from 'path'
-import fs from 'fs'
+import fs from 'fs-extra'
 import chalk from 'chalk'
 
 import { errorAndExit } from './utils/log'

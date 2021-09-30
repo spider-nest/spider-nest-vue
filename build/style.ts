@@ -38,7 +38,7 @@ export const copyStyle = () => {
     const dst = path.resolve(config.output.path, 'components')
 
     return withTaskName(`copyStyle:${module}`, () =>
-      run(`rsync -a ${src}/ ${dst}/`)
+      run(`cp -r ${src}/. ${dst}/`)
     )
   }
 

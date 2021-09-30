@@ -43,11 +43,13 @@ export const pathRewriter = (module: Module, replaceAll: boolean) => {
   const config = buildConfig[module]
 
   return (id: string) => {
-    id = id[replaceName](
-      `${SN_PREFIX}/theme-chalk`,
-      'spider-nest-vue/theme-chalk'
-    )
-    id = id[replaceName](`${SN_PREFIX}/`, `${config.bundle.path}/`)
+    if (id[replaceName]) {
+      id = id[replaceName](
+        `${SN_PREFIX}/theme-chalk`,
+        'spider-nest-vue/theme-chalk'
+      )
+      id = id[replaceName](`${SN_PREFIX}/`, `${config.bundle.path}/`)
+    }
     return id
   }
 }

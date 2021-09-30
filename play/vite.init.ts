@@ -1,4 +1,4 @@
-import { existsSync, writeFileSync, readFileSync } from 'fs'
+import { existsSync, writeFileSync, readFileSync } from 'fs-extra'
 
 const play = 'play.vue'
 const example = 'play.vue.example'

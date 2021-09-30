@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'fs-extra'
 
 import { snPackage } from './utils/paths'
 import { cyan, red, yellow, green } from './utils/log'

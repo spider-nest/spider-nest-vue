@@ -1,6 +1,6 @@
 import path from 'path'
-import fs from 'fs/promises'
 import * as vueCompiler from '@vue/compiler-sfc'
+import fs from 'fs-extra'
 import { Project } from 'ts-morph'
 import glob from 'fast-glob'
 import { bold } from 'chalk'
@@ -65,7 +65,7 @@ export const genComponentTypes = async () => {
   await Promise.all(
     filePaths.map(async (file) => {
       if (file.endsWith('.vue')) {
-        const content = await fs.readFile(file, 'utf-8')
+        const content = await fs.readFileSync(file, 'utf-8')
         const sfc = vueCompiler.parse(content)
         const { script, scriptSetup } = sfc.descriptor
         if (script || scriptSetup) {
@@ -110,11 +110,11 @@ export const genComponentTypes = async () => {
     const emitOutput = sourceFile.getEmitOutput()
     const tasks = emitOutput.getOutputFiles().map(async (outputFile) => {
       const filepath = outputFile.getFilePath()
-      await fs.mkdir(path.dirname(filepath), {
+      await fs.mkdirSync(path.dirname(filepath), {
         recursive: true,
       })
 
-      await fs.writeFile(
+      await fs.writeFileSync(
         filepath,
         pathRewriter('esm', true)(outputFile.getText()),
         'utf8'

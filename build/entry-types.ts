@@ -1,5 +1,5 @@
 import path from 'path'
-import fs from 'fs/promises'
+import fs from 'fs-extra'
 import { bold } from 'chalk'
 import glob from 'fast-glob'
 import { Project, ScriptTarget, ModuleKind } from 'ts-morph'
@@ -61,10 +61,14 @@ export const genEntryTypes = async () => {
     for (const outputFile of emitOutput.getOutputFiles()) {
       const filepath = outputFile.getFilePath()
 
-      await fs.mkdir(path.dirname(filepath), { recursive: true })
-      await fs.writeFile(
+      await fs.mkdirSync(path.dirname(filepath), { recursive: true })
+
+      const outputFileText = outputFile.getText()
+      await fs.writeFileSync(
         filepath,
-        outputFile.getText().replaceAll('@spider-nest-vue', '.'),
+        outputFileText
+          ? outputFileText.replaceAll('@spider-nest-vue', '.')
+          : outputFileText,
         'utf8'
       )
       green(`Definition for file: ${bold(sourceFile.getBaseName())} generated`)
@@ -79,7 +83,7 @@ export const copyEntryTypes = (() => {
   const copy = (module: Module) =>
     parallel(
       withTaskName(`copyEntryTypes:${module}`, () =>
-        run(`rsync -a ${src}/ ${buildConfig[module].output.path}/`)
+        run(`cp -r ${src}/. ${buildConfig[module].output.path}/`)
       ),
       withTaskName('copyEntryDefinitions', async () => {
         const files = await glob('*.d.ts', {
@@ -88,7 +92,7 @@ export const copyEntryTypes = (() => {
           onlyFiles: true,
         })
         await run(
-          `rsync -a ${files.join(' ')} ${buildConfig[module].output.path}/`
+          `cp -r ${files.join(' ')} ${buildConfig[module].output.path}/`
         )
       })
     )

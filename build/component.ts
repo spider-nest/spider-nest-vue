@@ -1,5 +1,5 @@
-import fs from 'fs'
 import path from 'path'
+import fs from 'fs-extra'
 import { series, parallel } from 'gulp'
 import { rollup } from 'rollup'
 import vue from 'rollup-plugin-vue'
@@ -108,7 +108,7 @@ function copyTypes() {
   const src = `${buildOutput}/types/components/`
   const copy = (module: Module) =>
     withTaskName(`copyTypes:${module}`, () =>
-      run(`rsync -a ${src} ${buildConfig[module].output.path}/components/`)
+      run(`cp -r ${src} ${buildConfig[module].output.path}/components/`)
     )
 
   return parallel(copy('esm'), copy('cjs'))

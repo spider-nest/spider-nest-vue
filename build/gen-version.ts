@@ -1,5 +1,5 @@
-import fs from 'fs'
 import path from 'path'
+import fs from 'fs-extra'
 
 import pkg from '../packages/spider-nest-vue/package.json' // need to be checked
 

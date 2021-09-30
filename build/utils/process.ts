@@ -4,12 +4,12 @@ import { green } from './log'
 
 import { projRoot } from './paths'
 
+const isWin = /^win/.test(process.platform)
+
 export const run = async (command: string, cwd: string = projRoot) =>
   new Promise<void>((resolve, reject) => {
     const args = command.split(' ')
-    const cmd = /^win/.test(process.platform)
-      ? `${args.shift()!}.cmd`
-      : args.shift()!
+    const cmd = isWin ? `${args.shift()!}.cmd` : args.shift()!
 
     green(`run: ${cmd} ${args.join(' ')}`)
     const app = spawn(cmd, args, {

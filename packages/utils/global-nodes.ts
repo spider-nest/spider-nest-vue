@@ -4,7 +4,7 @@ const globalNodes: HTMLElement[] = []
 
 let target = isServer ? undefined : document.body
 
-export function createGlobalNode(id) {
+export function createGlobalNode(id = undefined) {
   const el = document.createElement('div')
 
   if (id !== undefined) {
