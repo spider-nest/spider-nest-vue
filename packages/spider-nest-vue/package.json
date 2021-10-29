@@ -11,43 +11,39 @@
     "spider-nest",
     "spider-nest-vue"
   ],
-  "license": "MIT",
   "homepage": "https://github.com/spider-nest/spider-nest-vue#readme",
+  "bugs": {
+    "url": "https://github.com/spider-nest/spider-nest-vue/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/spider-nest/spider-nest-vue.git"
   },
-  "bugs": {
-    "url": "https://github.com/spider-nest/spider-nest-vue/issues"
-  },
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "style": "dist/index.css",
-  "unpkg": "dist/index.full.js",
-  "jsdelivr": "dist/index.full.js",
+  "license": "MIT",
   "sideEffects": [
     "dist/*",
-    "theme-chalk/*.css",
-    "theme-chalk/src/*.scss",
+    "palette/*.css",
+    "palette/src/*.scss",
     "es/components/*/style/*",
     "lib/components/*/style/*"
   ],
-  "peerDependencies": {
-    "vue": "^3.2.0"
-  },
-  "dependencies": {
-    "@popperjs/core": "^2.10.1",
-    "@vueuse/core": "^6.5.3",
-    "async-validator": "^4.0.3",
-    "dayjs": "^1.10.7",
-    "lodash": "^4.17.21",
-    "memoize-one": "^5.2.1",
-    "normalize-wheel-es": "^1.1.0"
-  },
-  "web-types": "web-types.json",
+  "main": "lib/index.js",
+  "jsdelivr": "dist/index.full.js",
+  "unpkg": "dist/index.full.js",
+  "module": "es/index.js",
+  "style": "dist/index.css",
   "browserslist": [
     "> 1%",
     "not ie 11",
     "not op_mini all"
-  ]
+  ],
+  "dependencies": {
+    "@vueuse/core": "^6.5.3",
+    "dayjs": "^1.10.7",
+    "lodash": "^4.17.21"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  },
+  "web-types": "web-types.json"
 }

@@ -1,12 +1,12 @@
-import { defineComponent, computed, inject, h } from 'vue'
+import { defineComponent, computed, inject, h, renderSlot } from 'vue'
 
 import { isNumber, isObject } from '@spider-nest-vue/utils/is'
 
-import type { PropType } from 'vue'
+import type { PropType, CSSProperties } from 'vue'
 
 type SizeObject = {
-  span: number
-  offset: number
+  span?: number
+  offset?: number
 }
 
 const SnCol = defineComponent({
@@ -56,7 +56,7 @@ const SnCol = defineComponent({
   setup(props, { slots }) {
     const { gutter } = inject('SnRow', { gutter: { value: 0 } })
 
-    const style = computed(() => {
+    const style = computed<CSSProperties>(() => {
       if (gutter.value) {
         return {
           paddingLeft: `${gutter.value / 2}px`,
@@ -106,7 +106,7 @@ const SnCol = defineComponent({
           class: ['sn-col', classList.value],
           style: style.value,
         },
-        slots.default?.()
+        [renderSlot(slots, 'default')]
       )
   },
 })

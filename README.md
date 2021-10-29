@@ -7,13 +7,13 @@ A vue.js ui library for web.
 [![Release](https://img.shields.io/github/v/release/spider-nest/spider-nest-vue)](https://github.com/spider-nest/spider-nest-vue/releases/latest)
 [![MIT](https://img.shields.io/github/license/spider-nest/spider-nest-vue)](https://cdn.jsdelivr.net/gh/spider-nest/spider-nest-vue@main/LICENSE)
 
-## Bootstrap project
+## Install dependencies
 
 ```
 $ pnpm i
 ```
 
-## Website preview
+## Docs preview
 
 ```
 $ pnpm docs:dev
@@ -27,9 +27,9 @@ $ pnpm docs:dev
 $ pnpm dev
 ```
 
-2. Add a component into `play/play.vue`
+2. Add a component into `cooking/cooking.vue`
 
-> play.vue
+> cooking.vue
 
 ```
 <script setup>
@@ -42,25 +42,6 @@ import { ComponentDeveloping } from '@spider-nest-vue/components'
 </template>
 ```
 
-## Generate new component
+## Thanks
 
-```
-$ pnpm gen component-name
-```
-
-Note the `component-name` must be in `kebab-case`, combining words by replacing each space with a dash.
-
-## Commit template
-
-With command
-
-```bash
-pnpm cz
-```
-
-Example
-
-```
-# [TYPE](SCOPE): [sn-component-name] DESCRIPTION#[ISSUE]
-# example: feat(components): [sn-button] add type for form usage #1234
-```
+Reference from [Element-Plus](https://github.com/element-plus/element-plus)

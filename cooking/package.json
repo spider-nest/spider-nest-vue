@@ -1,0 +1,7 @@
+{
+  "name": "@spider-nest-vue/cooking",
+  "private": true,
+  "scripts": {
+    "dev": "vite"
+  }
+}

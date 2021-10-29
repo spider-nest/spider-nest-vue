@@ -2,13 +2,10 @@
   "name": "@spider-nest-vue/components",
   "version": "0.0.1",
   "description": "All components are settled here.",
-  "main": "index.ts",
-  "module": "index.ts",
-  "types": "index.d.ts",
-  "unpkg": "index.js",
-  "jsdelivr": "index.js",
   "sideEffects": false,
-  "peerDependencies": {
-    "vue": "^3.2.0"
-  }
+  "main": "index.ts",
+  "jsdelivr": "index.js",
+  "unpkg": "index.js",
+  "module": "index.ts",
+  "types": "index.d.ts"
 }

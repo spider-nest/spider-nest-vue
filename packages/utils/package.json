@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "clean": "rimraf dist",
-    "build": "gulp"
+    "clean": "rimraf dist"
   },
   "peerDependencies": {
     "vue": "^3.2.0"

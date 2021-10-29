@@ -1,0 +1,31 @@
+{
+  "name": "@spider-nest-vue/palette",
+  "version": "0.0.1",
+  "description": "Spider nest vue component theme.",
+  "keywords": [
+    "vue-components",
+    "spider-nest",
+    "spider-nest-vue",
+    "palette"
+  ],
+  "homepage": "https://github.com/spider-nest/spider-nest-vue/blob/main/packages/palette/README.md",
+  "bugs": {
+    "url": "https://github.com/spider-nest/spider-nest-vue#issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spider-nest/spider-nest-vue.git"
+  },
+  "license": "MIT",
+  "author": "cnguu",
+  "main": "index.css",
+  "jsdelivr": "index.css",
+  "unpkg": "index.css",
+  "style": "index.css",
+  "scripts": {
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "sass": "^1.42.1"
+  }
+}

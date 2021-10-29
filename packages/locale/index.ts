@@ -10,7 +10,7 @@ export type TranslatePair = {
 
 export type Language = {
   name: string
-  el: TranslatePair
+  sn: TranslatePair
 }
 
 let lang: Language = defaultLang as Language

@@ -1,2 +1,2 @@
 import '@spider-nest-vue/components/base/style'
-import '@spider-nest-vue/theme-chalk/src/row.scss'
+import '@spider-nest-vue/palette/src/row.scss'

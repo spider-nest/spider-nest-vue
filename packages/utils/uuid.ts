@@ -8,7 +8,7 @@ while (IDX--) HEX[IDX] = (IDX + 256).toString(16).substring(1)
  * @see https://github.com/lukeed/uuid
  * @returns {string}
  */
-const uuid = () => {
+const uuid = (): string => {
   let i = 0,
     num,
     out = ''

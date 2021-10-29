@@ -8,7 +8,6 @@ export function rafThrottle(fn) {
     if (locked) return
     locked = true
     window.requestAnimationFrame(() => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       fn.apply(this, args)
       locked = false

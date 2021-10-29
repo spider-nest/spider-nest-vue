@@ -1,1 +1,1 @@
-import '@spider-nest-vue/theme-chalk/base.css'
+import '@spider-nest-vue/palette/base.css'
