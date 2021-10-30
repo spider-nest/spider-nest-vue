@@ -6,14 +6,14 @@
     "docs"
   ],
   "scripts": {
-    "build": "node scripts/build.ts",
+    "build": "node scripts/build.mjs",
     "clean": "pnpm clean:lib && pnpm clean -r --stream",
     "clean:lib": "rimraf dist",
     "dev": "pnpm -C cooking dev",
     "docs:build": "pnpm -C docs build",
     "docs:dev": "pnpm -C docs dev",
     "docs:serve": "pnpm -C docs serve",
-    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
+    "lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
     "prepare": "husky install"
   },
   "browserslist": [
@@ -47,6 +47,7 @@
     "fs-extra": "^10.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
+    "ora": "^6.0.1",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "sort-package-json": "^1.52.0",
