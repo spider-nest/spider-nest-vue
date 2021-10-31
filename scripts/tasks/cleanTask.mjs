@@ -10,7 +10,7 @@ export default function cleanTask() {
     spinner.start(chalk.blue('Cleaning...'))
     execPromise('pnpm clean')
       .then(() => {
-        spinner.succeed(chalk.green('Cleaned'))
+        spinner.succeed(chalk.green('Clean OK!'))
         resolve(true)
       })
       .catch((error) => {

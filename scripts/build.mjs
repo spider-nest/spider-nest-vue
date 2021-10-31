@@ -1,14 +1,18 @@
 import chalk from 'chalk'
 
 import cleanTask from './tasks/cleanTask.mjs'
+import buildModulesTask from './tasks/buildModulesTask.mjs'
 
-const resolveFalse = Promise.resolve(false)
+import { resolveFalse, resolveTrue } from './utils/promiseResolve.mjs'
 
 async function run() {
-  const cleaned = await cleanTask()
-  if (!cleaned) return resolveFalse
+  const clean = await cleanTask()
+  if (!clean) return resolveFalse
 
-  return Promise.resolve(true)
+  const buildModules = await buildModulesTask()
+  if (!buildModules) return resolveFalse
+
+  return resolveTrue
 }
 
 run().then((flag) => {
