@@ -2,6 +2,7 @@ import chalk from 'chalk'
 
 import cleanTask from './tasks/cleanTask.mjs'
 import buildModulesTask from './tasks/buildModulesTask.mjs'
+import buildFullBundleTask from './tasks/buildFullBundleTask.mjs'
 
 import { resolveFalse, resolveTrue } from './utils/promiseResolve.mjs'
 
@@ -11,6 +12,9 @@ async function run() {
 
   const buildModules = await buildModulesTask()
   if (!buildModules) return resolveFalse
+
+  const buildFullBundle = await buildFullBundleTask()
+  if (!buildFullBundle) return resolveFalse
 
   return resolveTrue
 }

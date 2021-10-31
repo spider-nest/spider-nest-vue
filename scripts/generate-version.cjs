@@ -9,8 +9,10 @@ if (tagVersion) {
   version = tagVersion.startsWith('v') ? tagVersion.slice(1) : tagVersion
 }
 
-fs.writeFileSync(
-  path.resolve(__dirname, '../packages/spider-nest-vue/version.ts'),
-  `export const version = '${version}'
+;['ts', 'mjs'].forEach((ext) => {
+  fs.writeFileSync(
+    path.resolve(__dirname, `../packages/spider-nest-vue/version.${ext}`),
+    `export const version = '${version}'
 `
-)
+  )
+})

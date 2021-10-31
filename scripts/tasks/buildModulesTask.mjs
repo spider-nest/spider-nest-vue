@@ -38,7 +38,7 @@ const getBundles = async (input) => {
       css(),
       vue({ target: 'browser' }),
       nodeResolve({
-        extensions: ['.mjs', '.js', '.json', '.ts'],
+        extensions: ['.js', '.ts'],
       }),
       commonjs(),
       esbuild({
