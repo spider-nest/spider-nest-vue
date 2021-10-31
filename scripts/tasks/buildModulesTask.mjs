@@ -87,7 +87,6 @@ export default function buildModulesTask() {
     spinner.start(chalk.blue('Modules Building...'))
     main().then((flag) => {
       if (!flag) return resolve(false)
-
       spinner.succeed(chalk.green('Build Modules OK!'))
       resolve(true)
     })

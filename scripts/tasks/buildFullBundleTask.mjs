@@ -73,7 +73,6 @@ export default function buildFullBundleTask() {
     spinner.start(chalk.blue('Full Bundle Building...'))
     Promise.all([main(true), main()]).then(([flag1, flag2]) => {
       if (!flag1 || !flag2) return resolve(false)
-
       spinner.succeed(chalk.green('Build Full Bundle OK!'))
       resolve(true)
     })

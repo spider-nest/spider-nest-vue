@@ -18,6 +18,7 @@ importers:
       '@spider-nest-vue/palette': workspace:*
       '@spider-nest-vue/tokens': workspace:*
       '@spider-nest-vue/utils': workspace:*
+      '@types/fs-extra': ^9.0.13
       '@typescript-eslint/eslint-plugin': ^5.2.0
       '@typescript-eslint/parser': ^5.2.0
       '@vitejs/plugin-vue': ^1.9.4
@@ -45,6 +46,7 @@ importers:
       stylelint: ^13.13.1
       stylelint-order: ^4.1.0
       stylelint-scss: ^3.21.0
+      ts-morph: ^12.1.0
       typescript: ^4.4.4
       vite: ^2.6.13
       vue: ^3.2.20
@@ -65,6 +67,7 @@ importers:
       '@rollup/plugin-commonjs': 21.0.1_rollup@2.58.3
       '@rollup/plugin-node-resolve': 13.0.6_rollup@2.58.3
       '@rollup/plugin-replace': 3.0.0_rollup@2.58.3
+      '@types/fs-extra': 9.0.13
       '@typescript-eslint/eslint-plugin': 5.2.0_61d834be236e22b473474e20e53cb311
       '@typescript-eslint/parser': 5.2.0_eslint@7.32.0+typescript@4.4.4
       '@vitejs/plugin-vue': 1.9.4_vite@2.6.13
@@ -92,6 +95,7 @@ importers:
       stylelint: 13.13.1
       stylelint-order: 4.1.0_stylelint@13.13.1
       stylelint-scss: 3.21.0_stylelint@13.13.1
+      ts-morph: 12.1.0
       typescript: 4.4.4
       vite: 2.6.13
       vue: 3.2.20
@@ -777,12 +781,27 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
+  /@ts-morph/common/0.11.1:
+    resolution: {integrity: sha512-7hWZS0NRpEsNV8vWJzg7FEz6V8MaLNeJOmwmghqUXTpzk16V1LLZhdo+4QvE/+zv4cVci0OviuJFnqhEfoV3+g==}
+    dependencies:
+      fast-glob: 3.2.7
+      minimatch: 3.0.4
+      mkdirp: 1.0.4
+      path-browserify: 1.0.1
+    dev: true
+
   /@types/estree/0.0.39:
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
     dev: true
 
   /@types/estree/0.0.50:
     resolution: {integrity: sha512-C6N5s2ZFtuZRj54k2/zyRhNDjJwwcViAM3Nbm8zjBpbqAdZ00mr0CFxvSKeO8Y/e03WVFLpQMdHYVfUd6SB+Hw==}
+    dev: true
+
+  /@types/fs-extra/9.0.13:
+    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+    dependencies:
+      '@types/node': 16.11.6
     dev: true
 
   /@types/glob/7.2.0:
@@ -1608,6 +1627,10 @@ packages:
   /clone/1.0.4:
     resolution: {integrity: sha1-2jCcwmPfFZlMaIypAheco8fNfH4=}
     engines: {node: '>=0.8'}
+    dev: true
+
+  /code-block-writer/10.1.1:
+    resolution: {integrity: sha512-67ueh2IRGst/51p0n6FvPrnRjAGHY5F8xdjkgrYE7DDzpJe6qA07RYQ9VcoUeo5ATOjSOiWpSL3SWBRRbempMw==}
     dev: true
 
   /code-point-at/1.1.0:
@@ -4044,6 +4067,10 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /path-browserify/1.0.1:
+    resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
+    dev: true
+
   /path-exists/3.0.0:
     resolution: {integrity: sha1-zg6+ql94yxiSXqfYENe1mwEP1RU=}
     engines: {node: '>=4'}
@@ -5123,6 +5150,13 @@ packages:
 
   /trough/1.0.5:
     resolution: {integrity: sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==}
+    dev: true
+
+  /ts-morph/12.1.0:
+    resolution: {integrity: sha512-xsJt70NePtztxDZ99bXkOwoi3p82JDUiPa0pSgfvxDj87mb4zUwzv1LHOue3Lq7iJlh5fLzvWshOMDEUfKTVtg==}
+    dependencies:
+      '@ts-morph/common': 0.11.1
+      code-block-writer: 10.1.1
     dev: true
 
   /tsconfig-paths/3.11.0:

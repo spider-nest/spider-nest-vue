@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import { SN_PKG } from './constants.mjs'
 import { snOutput } from './paths.mjs'
 
-const buildConfig = {
+export const buildConfig = {
   esm: {
     module: 'ESNext',
     format: 'esm',
