@@ -24,8 +24,5 @@
   "style": "index.css",
   "scripts": {
     "clean": "rimraf dist"
-  },
-  "devDependencies": {
-    "sass": "^1.42.1"
   }
 }
