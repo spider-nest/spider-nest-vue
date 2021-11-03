@@ -117,7 +117,7 @@ const main = async () => {
     fs.removeSync(snOutDir)
     return resolveTrue
   } catch (error) {
-    spinner.fail(chalk.red(`Build Type Files Fail: ${error}`))
+    spinner.fail(chalk.red(error))
     return resolveFalse
   }
 }

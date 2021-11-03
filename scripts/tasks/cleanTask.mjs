@@ -14,7 +14,7 @@ export default function cleanTask() {
         resolve(true)
       })
       .catch((error) => {
-        spinner.fail(chalk.red(`Clean Fail: ${error}`))
+        spinner.fail(chalk.red(error))
         resolve(false)
       })
   })

@@ -55,7 +55,7 @@
 
   // --sn-color-#{$type}
   // --sn-color-#{$type}-light-{$i}
-  @each $type in (success, warning, danger, error, info) {
+  @each $type in (success, warning, danger, info) {
     @include set-css-color-type($type);
   }
 

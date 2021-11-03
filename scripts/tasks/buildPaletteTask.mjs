@@ -1,15 +1,11 @@
 import fs from 'fs-extra'
 import chalk from 'chalk'
 import ora from 'ora'
-import dartSass from 'sass'
-import gulp from 'gulp'
-import gulpSass from 'gulp-sass'
-import gulpAutoprefixer from 'gulp-autoprefixer'
-import gulpCleanCSS from 'gulp-clean-css'
-import gulpRename from 'gulp-rename'
+import fb from 'fast-glob'
 
 import { paletteRoot, paletteOutput, distOutput } from '../utils/paths.mjs'
-import { resolveTrue } from '../utils/promiseResolve.mjs'
+import { resolveTrue, resolveFalse } from '../utils/promiseResolve.mjs'
+import execPromise from '../utils/execPromise.mjs'
 
 const spinner = ora()
 
@@ -20,30 +16,47 @@ const copySource = () => {
   })
 }
 
-//todo make it sync
 const buildPalette = async () => {
-  await gulp
-    .src(`${paletteRoot}/src/*.scss`)
-    .pipe(gulpSass(dartSass).sync())
-    .pipe(gulpAutoprefixer({ cascade: false }))
-    .pipe(
-      gulpCleanCSS({}, (details) => {
-        spinner.info(
-          `${chalk.cyanBright(details.name)}: ${chalk.yellow(
-            details.stats.originalSize / 1000
-          )} KB -> ${chalk.green(details.stats.minifiedSize / 1000)} KB`
-        )
+  let ret = resolveTrue
+  const sourceFiles = await fb('*.scss', {
+    cwd: `${paletteRoot}/src`,
+    absolute: true,
+    onlyFiles: true,
+    objectMode: true,
+    stats: true,
+  })
+  await Promise.all(
+    sourceFiles.map(async (sourceFile) => {
+      const { name, path, stats } = sourceFile
+      const cssName = name.replace('.scss', '.css')
+      const outputName = !/(index|base|display)/.test(cssName)
+        ? `sn-${cssName}`
+        : cssName
+      const outputFile = `${paletteOutput}/${outputName}`
+      await execPromise(
+        `sass --no-source-map ${path} ${paletteOutput}/${outputName}`
+      ).catch((error) => {
+        ret = resolveFalse
+        spinner.fail(chalk.red(error))
       })
-    )
-    .pipe(
-      gulpRename((path) => {
-        if (!/(index|base|display)/.test(path.basename)) {
-          path.basename = `sn-${path.basename}`
-        }
-      })
-    )
-    .pipe(gulp.dest(paletteOutput))
-  return resolveTrue
+      await execPromise(
+        `postcss -u autoprefixer --no-map -r ${paletteOutput}/${outputName}`
+      )
+        .then(() => {
+          const outputFileStat = fs.statSync(outputFile)
+          spinner.info(
+            `${chalk.cyanBright(name)}: ${chalk.yellow(
+              (stats.size / 1024).toFixed(3)
+            )} KB -> ${chalk.green((outputFileStat.size / 1024).toFixed(3))} KB`
+          )
+        })
+        .catch((error) => {
+          ret = resolveFalse
+          spinner.fail(chalk.red(error))
+        })
+    })
+  )
+  return ret
 }
 
 const main = () => {
