@@ -11,6 +11,7 @@ import { SN_PKG, SN_PREFIX } from '../utils/constants.mjs'
 import excludeFiles from '../utils/excludeFiles.mjs'
 import { pathRewriter } from '../utils/packages.mjs'
 import { resolveFalse, resolveTrue } from '../utils/promiseResolve.mjs'
+import { buildConfig } from '../utils/output.mjs'
 
 const spinner = ora()
 
@@ -113,6 +114,10 @@ const main = async () => {
     )
 
     const snOutDir = path.resolve(outDir, SN_PKG)
+    fs.copySync(outDir, buildConfig.esm.output.path)
+    fs.copySync(outDir, buildConfig.cjs.output.path)
+    fs.copySync(snOutDir, buildConfig.esm.output.path)
+    fs.copySync(snOutDir, buildConfig.cjs.output.path)
     fs.copySync(snOutDir, outDir)
     fs.removeSync(snOutDir)
     return resolveTrue

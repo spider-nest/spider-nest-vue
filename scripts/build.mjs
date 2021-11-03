@@ -7,6 +7,7 @@ import buildModulesTask from './tasks/buildModulesTask.mjs'
 import buildFullBundleTask from './tasks/buildFullBundleTask.mjs'
 import buildTypesTask from './tasks/buildTypesTask.mjs'
 import buildPaletteTask from './tasks/buildPaletteTask.mjs'
+import additionalFilesTask from './tasks/additionalFilesTask.mjs'
 
 import { resolveFalse, resolveTrue } from './utils/promiseResolve.mjs'
 
@@ -25,6 +26,9 @@ async function run() {
 
   const buildPalette = await buildPaletteTask()
   if (!buildPalette) return resolveFalse
+
+  const additionalFiles = await additionalFilesTask()
+  if (!additionalFiles) return resolveFalse
 
   return resolveTrue
 }
